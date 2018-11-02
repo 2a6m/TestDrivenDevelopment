@@ -5,18 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class App {
+
     private JPanel InterfaceMain;
     private JLabel Title;
     private JLabel Intro;
     private JComboBox Difficulty;
-    private JButton PlayButton;
+    private JButton validateButton;
 
-    public App() {
-        PlayButton.addActionListener(new ActionListener() {
+    public App(JFrame frame) {
+        validateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //JOptionPane.showMessageDialog(null, "Hello world");
-                JFrame frame = new JFrame("MysteryGame");
                 frame.setContentPane(new GameChoice().getGameChoice());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
@@ -27,7 +26,7 @@ public class App {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("MysteryGame");
-        frame.setContentPane(new App().InterfaceMain);
+        frame.setContentPane(new App(frame).InterfaceMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

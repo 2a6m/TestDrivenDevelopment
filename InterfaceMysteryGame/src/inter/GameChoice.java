@@ -7,7 +7,7 @@ public class GameChoice {
     private JLabel title;
     private JLabel intro;
     private JComboBox comboBox1;
-    private JButton button1;
+    private JButton playButton;
 
     public JPanel getGameChoice() {
         return gameChoice;
