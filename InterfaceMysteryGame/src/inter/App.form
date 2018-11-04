@@ -30,7 +30,7 @@
           <text value="Bienvenue joueur, choisissez votre niveau de difficulté."/>
         </properties>
       </component>
-      <component id="41f" class="javax.swing.JComboBox" binding="Difficulty">
+      <component id="41f" class="javax.swing.JComboBox" binding="difficulty">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

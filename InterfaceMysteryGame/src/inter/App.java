@@ -9,7 +9,7 @@ public class App {
     private JPanel InterfaceMain;
     private JLabel Title;
     private JLabel Intro;
-    private JComboBox Difficulty;
+    private JComboBox difficulty;
     private JButton validateButton;
 
     public App(JFrame frame) {
