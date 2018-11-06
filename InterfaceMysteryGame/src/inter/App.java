@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 public class App {
 
     private JPanel InterfaceMain;
-    private JLabel Title;
-    private JLabel Intro;
+    private JLabel title;
+    private JLabel intro;
     private JComboBox difficulty;
     private JButton validateButton;
 
@@ -16,7 +16,7 @@ public class App {
         validateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setContentPane(new GameChoice().getGameChoice());
+                frame.setContentPane(new GameChoice(frame).getGameChoice());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
                 frame.setVisible(true);

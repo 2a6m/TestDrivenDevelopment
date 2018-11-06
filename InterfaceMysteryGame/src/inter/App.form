@@ -10,7 +10,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="3b9b9" class="javax.swing.JLabel" binding="Title">
+      <component id="3b9b9" class="javax.swing.JLabel" binding="title">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="4" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="76" height="72"/>
@@ -20,7 +20,7 @@
           <text value="Mystery Game"/>
         </properties>
       </component>
-      <component id="35761" class="javax.swing.JLabel" binding="Intro">
+      <component id="35761" class="javax.swing.JLabel" binding="intro">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="4" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="287" height="34"/>
