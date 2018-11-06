@@ -125,6 +125,7 @@ public class riddle {
             public void actionPerformed(ActionEvent e) {
                 wordBox.setText("");
                 disableButtons.forEach(jButton -> jButton.setEnabled(true));
+                disableButtons = new ArrayList<JButton>();
             }
         });
     }
