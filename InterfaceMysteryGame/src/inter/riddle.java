@@ -24,6 +24,8 @@ public class riddle {
     private JButton letter12;
     private JButton clear;
     private JFrame frame;
+    private String word;
+    private ArrayList<JButton> disableButtons = new ArrayList<JButton>();
 
     private ArrayList<Character> letters = new ArrayList<Character>(Arrays.asList('F', 'A', 'T', 'I', 'M', 'A', '-', 'Z', 'O', 'H', 'R', 'A'));
 
@@ -49,75 +51,90 @@ public class riddle {
         letter1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter1);
             }
         });
         letter2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter2);
             }
         });
         letter3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter3);
             }
         });
         letter4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter4);
             }
         });
         letter5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter5);
             }
         });
         letter6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter6);
             }
         });
         letter7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter7);
             }
         });
         letter8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter8);
             }
         });
         letter9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter9);
             }
         });
         letter10.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter10);
             }
         });
         letter11.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter11);
             }
         });
         letter12.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                updateWordBox(letter12);
             }
         });
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                wordBox.setText("");
+                disableButtons.forEach(jButton -> jButton.setEnabled(true));
+            }
+        });
+    }
+
+    public void updateWordBox(JButton button) {
+        word = wordBox.getText();
+        word = word + button.getText();
+        wordBox.setText(word);
+        button.setEnabled(false);
+        disableButtons.add(button);
     }
 
     public void linkMethod() {
