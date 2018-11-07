@@ -14,12 +14,16 @@ public class GameChoice {
     private JComboBox gameMode;
     private JButton playButton;
 
-    public GameChoice(JFrame frame) {
+    public GameChoice(JFrame frame, Difficulty difficulty) {
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //JOptionPane.showMessageDialog(null, gameMode.getSelectedItem());
-                new riddle(frame).linkMethod();
+                switch (gameMode.getSelectedItem().toString()) {
+                    case "Devinette":
+                        SentenceMystery typeMystery = new SentenceMystery();
+                        new riddle(frame, difficulty, typeMystery).linkMethod();
+                }
             }
         });
     }

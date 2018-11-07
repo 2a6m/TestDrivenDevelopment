@@ -16,7 +16,9 @@ public class App {
         validateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setContentPane(new GameChoice(frame).getGameChoice());
+                String level = difficulty.getSelectedItem().toString();
+                Difficulty difficultyObject = new Difficulty(level);
+                frame.setContentPane(new GameChoice(frame, difficultyObject).getGameChoice());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
                 frame.setVisible(true);

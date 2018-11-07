@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import ;
 
 public class riddle {
     private JPanel riddle;
@@ -27,7 +28,8 @@ public class riddle {
     private String word;
     private ArrayList<JButton> disableButtons = new ArrayList<JButton>();
 
-    private ArrayList<Character> letters = new ArrayList<Character>(Arrays.asList('F', 'A', 'T', 'I', 'M', 'A', '-', 'Z', 'O', 'H', 'R', 'A'));
+    Game game = new Game();
+    private ArrayList<Character> letters = ;
 
     public void setLetters(ArrayList<Character> letters) {
         letter1.setText(Character.toString(letters.get(0)));
@@ -44,7 +46,7 @@ public class riddle {
         letter12.setText(Character.toString(letters.get(11)));
     }
 
-    public riddle(JFrame frame) {
+    public riddle(JFrame frame, Difficulty difficulty, TypeMystery typeMystery) {
 
         this.frame = frame;
 
@@ -139,11 +141,20 @@ public class riddle {
     }
 
     public void linkMethod() {
+        Game game = new Game(difficulty, typeMystery);
+        game.SetTypeMystery(typeMystery);
+
+        game.NextMystery();
+
+        ArrayList<Character> displayLetters = game.GetLetterDisplay();
+
+        //game.GetBonusList().get(0).ApplyBonus(game);
+
         frame.setContentPane(riddle);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        setLetters(letters);
+        setLetters(displayLetters);
     }
 
 }
