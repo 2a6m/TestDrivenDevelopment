@@ -108,14 +108,6 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="1a73f" class="javax.swing.JLabel" binding="title">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Devinettes"/>
-        </properties>
-      </component>
       <component id="7edba" class="javax.swing.JLabel" binding="wordBox">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -130,6 +122,14 @@
         </constraints>
         <properties>
           <text value="Clear"/>
+        </properties>
+      </component>
+      <component id="5add9" class="javax.swing.JLabel" binding="enigma">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value=""/>
         </properties>
       </component>
     </children>

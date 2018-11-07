@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import backend.*;
 
 public class GameChoice {
     private JPanel gameChoice;
@@ -22,7 +23,8 @@ public class GameChoice {
                 switch (gameMode.getSelectedItem().toString()) {
                     case "Devinette":
                         SentenceMystery typeMystery = new SentenceMystery();
-                        new riddle(frame, difficulty, typeMystery).linkMethod();
+                        new riddle(frame, difficulty, typeMystery).initialize();
+                        break;
                 }
             }
         });

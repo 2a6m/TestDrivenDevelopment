@@ -3,6 +3,7 @@ package inter;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import backend.*;
 
 public class App {
 
@@ -16,12 +17,31 @@ public class App {
         validateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String level = difficulty.getSelectedItem().toString();
-                Difficulty difficultyObject = new Difficulty(level);
-                frame.setContentPane(new GameChoice(frame, difficultyObject).getGameChoice());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.pack();
-                frame.setVisible(true);
+                Difficulty difficultyObject;
+
+                switch (difficulty.getSelectedItem().toString()) {
+                    case "Facile":
+                        difficultyObject = new Difficulty("easy");
+                        frame.setContentPane(new GameChoice(frame, difficultyObject).getGameChoice());
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.pack();
+                        frame.setVisible(true);
+                        break;
+                    case "Moyen":
+                        difficultyObject = new Difficulty("intermediate");
+                        frame.setContentPane(new GameChoice(frame, difficultyObject).getGameChoice());
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.pack();
+                        frame.setVisible(true);
+                        break;
+                    case "Difficile":
+                        difficultyObject = new Difficulty("advanced");
+                        frame.setContentPane(new GameChoice(frame, difficultyObject).getGameChoice());
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.pack();
+                        frame.setVisible(true);
+                        break;
+                }
             }
         });
     }
