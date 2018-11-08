@@ -6,19 +6,24 @@
         "sentence": "En prononcant son nom tu le detruis"
       },
       {
-        "word": "dodo",
-        "sentence": "Éteint, il apparaît lorsque les enfants ont sommeil"
+        "word": "menteur",
+        "sentence": "J'ai 2 pieds, 6 jambes, 8 bras, 2 têtes et un oeil."
       }
     ]
   },
   "intermediate" : {
-    "sentenceMode": []
+    "sentenceMode": [
+      {
+        "word": "vent",
+        "sentence": "Je ne respire jamais mais j'ai beaucoup de souffle."
+      }
+    ]
   },
   "advanced" : {
     "sentenceMode": [
       {
         "word": "dodo",
-        "sentence": "Éteint, il apparaît lorsque les enfants ont sommeil"
+        "sentence": "Éteint, il apparaît lorsque les enfants ont sommeil."
       }
     ]
   }
