@@ -38,6 +38,7 @@ public class riddle {
     private String word;
     private String response;
     private ArrayList<JButton> disableButtons = new ArrayList<JButton>();
+    private ArrayList<JButton> bonusUsed = new ArrayList<JButton>();
     private ArrayList<JButton> ListButtons = new ArrayList<JButton>();
     private Game game;
 
@@ -161,50 +162,74 @@ public class riddle {
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reset();
+                if (displayBonus.isEnabled()) {
+                    if (removeBonus.isEnabled()){reset();}
+                    else {
+                        reset();
+                        removeMethod();
+                    }
+                }
+                else {
+
+                    if(removeBonus.isEnabled()){reset();}
+                    else {
+                        reset();
+                        removeMethod();
+                    }
+                    wordBox.setText(response.substring(0,1));
+                    removeFirstLetter();
+                }
             }
         });
         removeBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (displayBonus.isEnabled()) {reset();}
-                else { wordBox.setText(response.substring(0,1));}
+                reset();
+                if (!displayBonus.isEnabled()) {wordBox.setText(response.substring(0,1));}
                 removeMethod();
                 removeBonus.setEnabled(false);
+                bonusUsed.add(removeBonus);
             }
         });
+
         displayBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 reset();
-                for (JButton button : ListButtons) {
-                    if (button.getText().contentEquals(response.substring(0,1))) {
-                        button.setEnabled(false);
-                        disableButtons.add(button);
-                        break;
-                    }
-                }
+                removeFirstLetter();
                 wordBox.setText(response.substring(0,1));
                 displayBonus.setEnabled(false);
+                bonusUsed.add(displayBonus);
             }
         });
         skipBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 reset();
+                resetBonus();
                 Next();
-                skipBonus.setEnabled(false);
             }
         });
     }
 
     public void reset() {
         wordBox.setText("");
+
         disableButtons.forEach(new Consumer<JButton>() {
             @Override
             public void accept(JButton jButton) {
                 jButton.setEnabled(true) ;
                 disableButtons = new ArrayList<JButton>();
+            }
+        });
+    }
+
+    public void resetBonus() {
+        bonusUsed.forEach(new Consumer<JButton>() {
+            @Override
+            public void accept(JButton jButton) {
+                jButton.setEnabled(true) ;
+                bonusUsed = new ArrayList<JButton>();
             }
         });
     }
@@ -215,6 +240,7 @@ public class riddle {
             boolean bool = response.contentEquals(word);
             if (bool) {
                 reset();
+                resetBonus();
                 Next();
             }
         }
@@ -236,6 +262,16 @@ public class riddle {
             }
             
         }
+    }
+    public void removeFirstLetter(){
+        for (JButton button : ListButtons) {
+            if (button.getText().contentEquals(response.substring(0,1))) {
+                button.setEnabled(false);
+                disableButtons.add(button);
+                break;
+            }
+        }
+
     }
 
     public void initialize() {
