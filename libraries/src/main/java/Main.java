@@ -19,6 +19,7 @@ public class Main {
         System.out.println(game.GetBonusList().get(0).IsAvailable());
 
         game.GetBonusList().get(0).ApplyBonus(game);
+        displayLetters = game.GetLetterDisplay();
         System.out.println(displayLetters);
 
         System.out.println(game.GetBonusList().get(0).IsAvailable());

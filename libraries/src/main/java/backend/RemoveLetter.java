@@ -21,7 +21,7 @@ public class RemoveLetter extends TypeBonus {
                 int randInt = random.nextInt(displayLetters.size());
                 char randLetter = displayLetters.get(randInt);
 
-                if (word.indexOf(randLetter) == -1) {
+                if (randLetter != ' ' && word.indexOf(randLetter) == -1) {
                     displayLetters.remove(randInt);
                     displayLetters.add(' ');
 
