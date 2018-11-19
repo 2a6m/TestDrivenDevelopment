@@ -249,7 +249,7 @@ public class riddle {
                 reset();
                 resetSpace();
                 resetBonus();
-                difficulty.AddCoins(game.GetPlayer());
+                if (player!=null){difficulty.AddCoins(game.GetPlayer());}
                 Next();
             }
         }
@@ -300,5 +300,4 @@ public class riddle {
         }
 
     }
-
 }
