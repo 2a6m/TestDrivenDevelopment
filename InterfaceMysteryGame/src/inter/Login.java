@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Login {
     private JPanel loginPanel;
-    private JTextArea username;
+    private JTextField username;
     private JPasswordField password;
     private JButton Login;
     private JButton notLogin;
@@ -20,18 +20,18 @@ public class Login {
             @Override
             public void actionPerformed(ActionEvent e) {
                 char[] pswdArray = password.getPassword();
-                String str = new String();
+                String str = "";
                 for(char c : pswdArray) str+=String.valueOf(c);
-                game = new Game(difficulty, typeMystery);
-                game.SetTypeMystery(typeMystery);
-                game.Login(username.getText(),str);
-                //new riddle(frame, difficulty, typeMystery).initialize();
+//                game = new Game(difficulty, typeMystery);
+//                game.SetTypeMystery(typeMystery);
+//                game.Login(username.getText(),str);
+                new riddle(frame, difficulty, typeMystery, username.getText(), str).initialize();
             }
         });
         notLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new riddle(frame, difficulty, typeMystery).initialize();
+                new riddle(frame, difficulty, typeMystery, "", "").initialize();
             }
         });
     }

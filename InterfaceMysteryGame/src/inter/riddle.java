@@ -37,6 +37,8 @@ public class riddle {
     private TypeMystery typeMystery;
     private String word;
     private String response;
+    private String user;
+    private String password;
     private ArrayList<JButton> disableButtons = new ArrayList<JButton>();
     private ArrayList<JButton> bonusUsed = new ArrayList<JButton>();
     private ArrayList<JButton> ListButtons = new ArrayList<JButton>();
@@ -69,11 +71,13 @@ public class riddle {
         ListButtons.add(letter12);
     }
 
-    public riddle(JFrame frame, Difficulty difficulty, TypeMystery typeMystery) {
+    public riddle(JFrame frame, Difficulty difficulty, TypeMystery typeMystery, String user, String password) {
 
         this.frame = frame;
         this.difficulty = difficulty;
         this.typeMystery= typeMystery;
+        this.user = user;
+        this.password = password;
 
         letter1.addActionListener(new ActionListener() {
             @Override
@@ -277,6 +281,9 @@ public class riddle {
     public void initialize() {
         this.game = new Game(difficulty, typeMystery);
         game.SetTypeMystery(typeMystery);
+        if (this.user != "") {
+            game.Login(this.user, this.password);
+        }
         Next();
     }
 
