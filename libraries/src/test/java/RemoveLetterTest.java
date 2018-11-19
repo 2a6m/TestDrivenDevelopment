@@ -17,7 +17,8 @@ public class RemoveLetterTest {
         difficulty = new Difficulty("easy");
         sentenceMystery = new SentenceMystery();
 
-        game = new Game(difficulty, sentenceMystery);
+        game = new Game(difficulty);
+        game.SetTypeMystery(sentenceMystery);
         game.Login("Houda", "cool");
         game.NextMystery();
     }

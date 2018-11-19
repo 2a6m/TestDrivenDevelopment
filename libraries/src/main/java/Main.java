@@ -7,7 +7,7 @@ public class Main {
         SentenceMystery typeMystery = new SentenceMystery();
         Difficulty difficulty = new Difficulty("easy");
 
-        Game game = new Game(difficulty, typeMystery);
+        Game game = new Game(difficulty);
         game.SetTypeMystery(typeMystery);
         game.Login("Houda", "cool");
 
