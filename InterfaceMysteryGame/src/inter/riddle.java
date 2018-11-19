@@ -32,6 +32,8 @@ public class riddle {
     private JButton displayBonus;
     private JButton skipBonus;
     private JLabel espace;
+    private JLabel lettersNumber;
+    private JLabel coins;
     private JFrame frame;
     private Difficulty difficulty;
     private TypeMystery typeMystery;
@@ -42,7 +44,9 @@ public class riddle {
     private ArrayList<JButton> disableButtons = new ArrayList<JButton>();
     private ArrayList<JButton> bonusUsed = new ArrayList<JButton>();
     private ArrayList<JButton> ListButtons = new ArrayList<JButton>();
+    private ArrayList<JButton> ListSpace = new ArrayList<JButton>();
     private Game game;
+    private Player player;
 
     public void setLetters(ArrayList<Character> letters) {
         letter1.setText(Character.toString(letters.get(0)));
@@ -69,6 +73,8 @@ public class riddle {
         ListButtons.add(letter10);
         ListButtons.add(letter11);
         ListButtons.add(letter12);
+        removeSpace();
+
     }
 
     public riddle(JFrame frame, Difficulty difficulty, TypeMystery typeMystery, String user, String password) {
@@ -166,30 +172,15 @@ public class riddle {
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (displayBonus.isEnabled()) {
-                    if (removeBonus.isEnabled()){reset();}
-                    else {
-                        reset();
-                        removeMethod();
-                    }
-                }
-                else {
-
-                    if(removeBonus.isEnabled()){reset();}
-                    else {
-                        reset();
-                        removeMethod();
-                    }
-                    wordBox.setText(response.substring(0,1));
-                    removeFirstLetter();
-                }
+                reset();
             }
         });
         removeBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!displayBonus.isEnabled()) {wordBox.setText(response.substring(0,1));}
-                removeMethod();
+                game.GetBonusList().get(0).ApplyBonus(game);
+                setLetters(game.GetLetterDisplay());
+                coins.setText(String.valueOf(player.GetCoins()) + " pièces");
                 removeBonus.setEnabled(false);
                 bonusUsed.add(removeBonus);
             }
@@ -198,18 +189,11 @@ public class riddle {
         displayBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                removeFirstLetter();
-                wordBox.setText(response.substring(0,1));
-                displayBonus.setEnabled(false);
-                bonusUsed.add(displayBonus);
             }
         });
         skipBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reset();
-                resetBonus();
-                Next();
             }
         });
     }
@@ -220,8 +204,19 @@ public class riddle {
         disableButtons.forEach(new Consumer<JButton>() {
             @Override
             public void accept(JButton jButton) {
+                if (!jButton.equals(" "))
+                    jButton.setEnabled(true) ;
+                    disableButtons = new ArrayList<JButton>();
+            }
+        });
+    }
+
+    public void resetSpace() {
+        ListSpace.forEach(new Consumer<JButton>() {
+            @Override
+            public void accept(JButton jButton) {
                 jButton.setEnabled(true) ;
-                disableButtons = new ArrayList<JButton>();
+                ListSpace = new ArrayList<JButton>();
             }
         });
     }
@@ -236,13 +231,25 @@ public class riddle {
         });
     }
 
+    public void removeSpace() {
+        for (JButton button : ListButtons) {
+            if (button.getText().equals(" ")){
+                button.setEnabled(false);
+                ListSpace.add(button);
+            }
+
+        }
+    }
+
     public void check() {
         String word = wordBox.getText();
         if (response.length() == wordBox.getText().length()) {
             boolean bool = response.contentEquals(word);
             if (bool) {
                 reset();
+                resetSpace();
                 resetBonus();
+                difficulty.AddCoins(game.GetPlayer());
                 Next();
             }
         }
@@ -256,25 +263,6 @@ public class riddle {
         disableButtons.add(button);
     }
 
-    public void removeMethod(){
-        for (JButton button : ListButtons) {
-            if(response.indexOf(button.getText().charAt(0))== -1){
-                button.setEnabled(false);
-                disableButtons.add(button);
-            }
-            
-        }
-    }
-    public void removeFirstLetter(){
-        for (JButton button : ListButtons) {
-            if (button.getText().contentEquals(response.substring(0,1))) {
-                button.setEnabled(false);
-                disableButtons.add(button);
-                break;
-            }
-        }
-
-    }
 
     public void initialize() {
         this.game = new Game(difficulty, typeMystery);
@@ -291,6 +279,7 @@ public class riddle {
 
         enigma.setText(game.GetMystery().getValue().get(0));
         this.response = game.GetMystery().getKey();
+        lettersNumber.setText(String.valueOf(response.length()) + " lettres");
 
         ArrayList<Character> displayLetters = game.GetLetterDisplay();
 
@@ -301,6 +290,15 @@ public class riddle {
         frame.pack();
         frame.setVisible(true);
         setLetters(displayLetters);
+        player = game.GetPlayer();
+        if (player==null){
+            removeBonus.setEnabled(false);
+            disableButtons.add(removeBonus);
+        }
+        else {
+          coins.setText(String.valueOf(player.GetCoins()) + " pièces");
+        }
+
     }
 
 }
