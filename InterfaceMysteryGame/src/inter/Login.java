@@ -12,7 +12,6 @@ public class Login {
     private JPasswordField password;
     private JButton Login;
     private JButton notLogin;
-    private Game game ;
 
     public Login(JFrame frame, Difficulty difficulty,TypeMystery typeMystery) {
 
@@ -22,9 +21,6 @@ public class Login {
                 char[] pswdArray = password.getPassword();
                 String str = "";
                 for(char c : pswdArray) str+=String.valueOf(c);
-//                game = new Game(difficulty, typeMystery);
-//                game.SetTypeMystery(typeMystery);
-//                game.Login(username.getText(),str);
                 new riddle(frame, difficulty, typeMystery, username.getText(), str).initialize();
             }
         });
