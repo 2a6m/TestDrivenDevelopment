@@ -3,21 +3,19 @@ package backend;
 import org.json.JSONObject;
 import javafx.util.*;
 
-import javax.rmi.CORBA.Util;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-
     private Player player;
     private Difficulty difficulty;
     private TypeMystery typeMystery;
-    private Pair<String, List<String>> mystery ;
+    private Pair<String, List<String>> mystery;
     private ArrayList<Character> letterDisplay;
     private ArrayList<TypeBonus> bonusList = new ArrayList<TypeBonus>();
 
-    public Game(Difficulty difficulty){ //Ajouter Player
+    public Game(Difficulty difficulty) { //Ajouter Player
         this.difficulty = difficulty;
 
         this.bonusList.add(new RemoveLetter());
@@ -28,33 +26,19 @@ public class Game {
      * @param
      * @return void
      */
-    public void NextMystery() {
-        typeMystery.NextMystery(this);
-    }
+    public void NextMystery() { typeMystery.NextMystery(this); }
 
-    public void SetLetterDisplay(ArrayList<Character> letterDisplay) {
-        this.letterDisplay = letterDisplay;
-    }
+    public void SetLetterDisplay(ArrayList<Character> letterDisplay) { this.letterDisplay = letterDisplay; }
 
-    public ArrayList<Character> GetLetterDisplay(){
-        return this.letterDisplay;
-    }
+    public ArrayList<Character> GetLetterDisplay(){ return this.letterDisplay; }
 
-    public void SetTypeMystery(TypeMystery typeMystery){
-        this.typeMystery = typeMystery;
-    }
+    public void SetTypeMystery(TypeMystery typeMystery){ this.typeMystery = typeMystery; }
 
-    public void SetDifficulty(Difficulty difficulty){
-        this.difficulty = difficulty;
-    }
+    public void SetDifficulty(Difficulty difficulty){ this.difficulty = difficulty; }
 
-    public Difficulty GetDifficulty() {
-        return this.difficulty;
-    }
+    public Difficulty GetDifficulty() { return this.difficulty; }
 
-    public void SetMystery(Pair<String, List<String>> mystery){
-        this.mystery = mystery;
-    }
+    public void SetMystery(Pair<String, List<String>> mystery){ this.mystery = mystery; }
 
     public Pair<String, List<String>> GetMystery() { return mystery; }
 
@@ -71,17 +55,17 @@ public class Game {
     public void Login(String pseudo, String password){
         JSONObject playerData = CheckLogin(pseudo,password);
 
-        if(playerData.length() != 0){
+        if(playerData.length() != 0) {
             Player player = new Player(pseudo);
             this.player = player;
 
-            try{
+            try {
                 int playerCoins = (int) playerData.get("coins");
                 player.SetCoins(playerCoins);
 
                 System.out.print("Connection réussie");
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.print("Connection échouée");
 
             }
@@ -98,7 +82,7 @@ public class Game {
      * @param  password the password of the player
      * @return          a JSONObject representing the player's data
      */
-    private JSONObject CheckLogin(String pseudo, String password){
+    private JSONObject CheckLogin(String pseudo, String password) {
         JSONObject objectNull = new JSONObject();
 
         try {
@@ -107,10 +91,10 @@ public class Game {
             JSONObject playerData = db.getJSONObject(pseudo);
             String pass = (String) playerData.get("password");
 
-            if(pass.equals(password)){
+            if(pass.equals(password)) {
                 return playerData;
             }
-            else{
+            else {
                 return objectNull;           //invalid password
             }
 
@@ -125,8 +109,8 @@ public class Game {
      *
      * @return void
      */
-    public void Save(){
-        try{
+    public void Save() {
+        try {
             JSONObject db = Utils.ReadDatabase(Utils.url+"/../libraries/src/main/resources/playerDatabase.json");
             JSONObject playerData = db.getJSONObject(player.GetPseudo());
             playerData.put("coins",player.GetCoins());
@@ -136,7 +120,7 @@ public class Game {
                 files.write(db.toString());
                 System.out.println("\nSuccessfully updated json object to file !");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.print(e);
         }
 
