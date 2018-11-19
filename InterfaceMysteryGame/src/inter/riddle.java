@@ -188,7 +188,6 @@ public class riddle {
         removeBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reset();
                 if (!displayBonus.isEnabled()) {wordBox.setText(response.substring(0,1));}
                 removeMethod();
                 removeBonus.setEnabled(false);
@@ -199,7 +198,6 @@ public class riddle {
         displayBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reset();
                 removeFirstLetter();
                 wordBox.setText(response.substring(0,1));
                 displayBonus.setEnabled(false);
