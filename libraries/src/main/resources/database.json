@@ -9,15 +9,23 @@
         "word": "menteur",
         "sentence": "J'ai 2 pieds, 6 jambes, 8 bras, 2 têtes et un oeil."
       }
-    ]
+    ],
+    "pictureMode": [],
+    "synonymMode": []
   },
   "intermediate" : {
     "sentenceMode": [
       {
         "word": "vent",
         "sentence": "Je ne respire jamais mais j'ai beaucoup de souffle."
+      },
+      {
+        "word": "stylo",
+        "sentence": "Je parle toutes les langues et j'ai tout le temps la tête à l'envers."
       }
-    ]
+    ],
+    "pictureMode": [],
+    "synonymMode": []
   },
   "advanced" : {
     "sentenceMode": [
@@ -25,6 +33,8 @@
         "word": "dodo",
         "sentence": "Éteint, il apparaît lorsque les enfants ont sommeil."
       }
-    ]
+    ],
+    "pictureMode": [],
+    "synonymMode": []
   }
 }

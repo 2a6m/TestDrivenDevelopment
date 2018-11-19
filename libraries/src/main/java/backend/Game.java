@@ -17,9 +17,8 @@ public class Game {
     private ArrayList<Character> letterDisplay;
     private ArrayList<TypeBonus> bonusList = new ArrayList<TypeBonus>();
 
-    public Game(Difficulty difficulty, TypeMystery typeMystery){ //Ajouter Player
+    public Game(Difficulty difficulty){ //Ajouter Player
         this.difficulty = difficulty;
-        this.typeMystery = typeMystery;
 
         this.bonusList.add(new RemoveLetter());
     }
@@ -103,7 +102,7 @@ public class Game {
         JSONObject objectNull = new JSONObject();
 
         try {
-            JSONObject db = Utils.ReadDatabase(Utils.url+"/../libraries/playerDatabase.json");
+            JSONObject db = Utils.ReadDatabase(Utils.url+"/../libraries/src/main/resources/playerDatabase.json");
 
             JSONObject playerData = db.getJSONObject(pseudo);
             String pass = (String) playerData.get("password");
@@ -128,11 +127,11 @@ public class Game {
      */
     public void Save(){
         try{
-            JSONObject db = Utils.ReadDatabase(Utils.url+"/../libraries/playerDatabase.json");
+            JSONObject db = Utils.ReadDatabase(Utils.url+"/../libraries/src/main/resources/playerDatabase.json");
             JSONObject playerData = db.getJSONObject(player.GetPseudo());
             playerData.put("coins",player.GetCoins());
 
-            try (FileWriter files = new FileWriter(Utils.url+"/../libraries/playerDatabase.json"))
+            try (FileWriter files = new FileWriter(Utils.url+"/../libraries/src/main/resources/playerDatabase.json"))
             {
                 files.write(db.toString());
                 System.out.println("\nSuccessfully updated json object to file !");
