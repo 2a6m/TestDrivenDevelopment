@@ -23,7 +23,11 @@ public class GameChoice {
                 switch (gameMode.getSelectedItem().toString()) {
                     case "Devinette":
                         SentenceMystery typeMystery = new SentenceMystery();
-                        new riddle(frame, difficulty, typeMystery).initialize();
+                        frame.setContentPane(new Login(frame, difficulty, typeMystery).getLogin());
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.pack();
+                        frame.setVisible(true);
+                        //nextJPanel(frame,difficulty,typeMystery);
                         break;
                 }
             }
