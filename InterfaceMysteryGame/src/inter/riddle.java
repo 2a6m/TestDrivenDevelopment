@@ -3,13 +3,11 @@ package inter;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 import java.util.*;
-import java.util.function.Consumer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import backend.*;
-
 
 public class riddle {
     private JPanel riddle;
@@ -28,20 +26,12 @@ public class riddle {
     private JButton letter11;
     private JButton letter12;
     private JButton clear;
-    private JButton removeBonus;
-    private JButton displayBonus;
-    private JButton skipBonus;
-    private JLabel espace;
     private JFrame frame;
     private Difficulty difficulty;
     private TypeMystery typeMystery;
     private String word;
     private String response;
-    private String user;
-    private String password;
     private ArrayList<JButton> disableButtons = new ArrayList<JButton>();
-    private ArrayList<JButton> bonusUsed = new ArrayList<JButton>();
-    private ArrayList<JButton> ListButtons = new ArrayList<JButton>();
     private Game game;
 
     public void setLetters(ArrayList<Character> letters) {
@@ -57,27 +47,13 @@ public class riddle {
         letter10.setText(Character.toString(letters.get(9)));
         letter11.setText(Character.toString(letters.get(10)));
         letter12.setText(Character.toString(letters.get(11)));
-        ListButtons.add(letter1);
-        ListButtons.add(letter2);
-        ListButtons.add(letter3);
-        ListButtons.add(letter4);
-        ListButtons.add(letter5);
-        ListButtons.add(letter6);
-        ListButtons.add(letter7);
-        ListButtons.add(letter8);
-        ListButtons.add(letter9);
-        ListButtons.add(letter10);
-        ListButtons.add(letter11);
-        ListButtons.add(letter12);
     }
 
-    public riddle(JFrame frame, Difficulty difficulty, TypeMystery typeMystery, String user, String password) {
+    public riddle(JFrame frame, Difficulty difficulty, TypeMystery typeMystery) {
 
         this.frame = frame;
         this.difficulty = difficulty;
         this.typeMystery= typeMystery;
-        this.user = user;
-        this.password = password;
 
         letter1.addActionListener(new ActionListener() {
             @Override
@@ -166,83 +142,22 @@ public class riddle {
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (displayBonus.isEnabled()) {
-                    if (removeBonus.isEnabled()){reset();}
-                    else {
-                        reset();
-                        removeMethod();
-                    }
-                }
-                else {
-
-                    if(removeBonus.isEnabled()){reset();}
-                    else {
-                        reset();
-                        removeMethod();
-                    }
-                    wordBox.setText(response.substring(0,1));
-                    removeFirstLetter();
-                }
-            }
-        });
-        removeBonus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!displayBonus.isEnabled()) {wordBox.setText(response.substring(0,1));}
-                removeMethod();
-                removeBonus.setEnabled(false);
-                bonusUsed.add(removeBonus);
-            }
-        });
-
-        displayBonus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                removeFirstLetter();
-                wordBox.setText(response.substring(0,1));
-                displayBonus.setEnabled(false);
-                bonusUsed.add(displayBonus);
-            }
-        });
-        skipBonus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
                 reset();
-                resetBonus();
-                Next();
             }
         });
     }
 
     public void reset() {
         wordBox.setText("");
-
-        disableButtons.forEach(new Consumer<JButton>() {
-            @Override
-            public void accept(JButton jButton) {
-                jButton.setEnabled(true) ;
-                disableButtons = new ArrayList<JButton>();
-            }
-        });
+        disableButtons.forEach(jButton -> jButton.setEnabled(true));
+        disableButtons = new ArrayList<JButton>();
     }
-
-    public void resetBonus() {
-        bonusUsed.forEach(new Consumer<JButton>() {
-            @Override
-            public void accept(JButton jButton) {
-                jButton.setEnabled(true) ;
-                bonusUsed = new ArrayList<JButton>();
-            }
-        });
-    }
-
     public void check() {
         String word = wordBox.getText();
         if (response.length() == wordBox.getText().length()) {
             boolean bool = response.contentEquals(word);
             if (bool) {
                 reset();
-                resetBonus();
                 Next();
             }
         }
@@ -256,32 +171,9 @@ public class riddle {
         disableButtons.add(button);
     }
 
-    public void removeMethod(){
-        for (JButton button : ListButtons) {
-            if(response.indexOf(button.getText().charAt(0))== -1){
-                button.setEnabled(false);
-                disableButtons.add(button);
-            }
-            
-        }
-    }
-    public void removeFirstLetter(){
-        for (JButton button : ListButtons) {
-            if (button.getText().contentEquals(response.substring(0,1))) {
-                button.setEnabled(false);
-                disableButtons.add(button);
-                break;
-            }
-        }
-
-    }
-
     public void initialize() {
         this.game = new Game(difficulty, typeMystery);
         game.SetTypeMystery(typeMystery);
-        if (this.user != "") {
-            game.Login(this.user, this.password);
-        }
         Next();
     }
 
