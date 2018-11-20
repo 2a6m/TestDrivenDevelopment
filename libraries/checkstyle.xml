@@ -82,11 +82,18 @@
 
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
-        <module name="ConstantName"/>
+        <module name="ConstantName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*$" />
+        </module>
         <!-- <module name="LocalFinalVariableName"/> -->
         <module name="LocalVariableName"/>
         <module name="MemberName"/>
-        <!--<module name="MethodName"/> -->
+        <module name="MethodName">
+            <!-- Validates identifiers for method names. -->
+            <metadata name="altname" value="MethodName" />
+            <property name="format" value="^[A-Z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*$" />
+            <property name="severity" value="error" />
+        </module>
         <module name="PackageName"/>
         <module name="ParameterName"/>
         <module name="StaticVariableName"/>
@@ -131,7 +138,6 @@
         <!-- See http://checkstyle.sf.net/config_whitespace.html -->
         <module name="EmptyForIteratorPad"/>
         <module name="MethodParamPad"/>
-        <module name="NoWhitespaceAfter"/>
         <module name="NoWhitespaceBefore"/>
         <module name="OperatorWrap"/>
         <module name="ParenPad"/>
@@ -139,7 +145,9 @@
         <module name="NoWhitespaceAfter">
             <property name="allowLineBreaks" value="true"/>
         </module>
-        <module name="WhitespaceAround"/>
+        <module name="WhitespaceAround">
+            <property name="tokens" value="LITERAL_RETURN"/>
+        </module>
 
 
         <!-- Modifier Checks                                    -->
@@ -152,7 +160,10 @@
         <!-- See http://checkstyle.sf.net/config_blocks.html -->
         <module name="AvoidNestedBlocks"/>
         <module name="EmptyBlock"/>
-        <module name="LeftCurly">    <property name="option" value="nl"/> </module>
+        <module name="LeftCurly">
+            <property name="option" value="eol"/>
+            <property name="tokens" value="CLASS_DEF"/>
+        </module>
         <module name="NeedBraces">
             <property name="allowSingleLineStatement" value="true"/>
         </module>
@@ -189,13 +200,6 @@
         </module -->
         <module name="TodoComment"/>
         <module name="UpperEll"/>
-
-        <module name="MethodName">
-            <!-- Validates identifiers for method names. -->
-            <metadata name="altname" value="MethodName" />
-            <property name="format" value="^[A-Z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*$" />
-            <property name="severity" value="error" />
-        </module>
 
     </module>
 

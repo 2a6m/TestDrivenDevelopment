@@ -5,8 +5,7 @@ public class Difficulty {
 
     private String name;
     private int levelCoin;
-    private Map<String, Integer> coinConfiguration = new HashMap<String, Integer>()
-    {
+    private Map<String, Integer> coinConfiguration = new HashMap<String, Integer>() {
         {
             put("easy", 10);
             put("intermediate", 20);
@@ -32,7 +31,7 @@ public class Difficulty {
      * @param  player   the player who spent his coins
      * @return void
      */
-    public void RetryCoins(Player player){
+    public void RetryCoins(Player player) {
         int currentCoins = player.GetCoins();
         int newCoins = currentCoins - levelCoin;
         player.SetCoins(newCoins);

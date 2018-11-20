@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class RemoveLetter extends TypeBonus {
 
-    public RemoveLetter() {}
+    public RemoveLetter() { }
 
     @Override
     public void ApplyBonus(Game game) {
@@ -31,8 +31,7 @@ public class RemoveLetter extends TypeBonus {
 
             used = false;
             game.SetLetterDisplay(Utils.MixArray(displayLetters));
-        }
-        else {
+        } else {
             System.out.println("Pas assez de pieces");
         }
     }
