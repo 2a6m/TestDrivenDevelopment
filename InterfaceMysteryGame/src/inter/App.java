@@ -7,7 +7,7 @@ import backend.*;
 
 public class App {
 
-    private JPanel InterfaceMain;
+    private JPanel interfaceMain;
     private JLabel title;
     private JLabel intro;
     private JComboBox difficulty;
@@ -48,7 +48,7 @@ public class App {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("MysteryGame");
-        frame.setContentPane(new App(frame).InterfaceMain);
+        frame.setContentPane(new App(frame).interfaceMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
