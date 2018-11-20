@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -29,5 +30,6 @@ public class RemoveLetterTest {
         ArrayList<Character> displayLetters = game.GetLetterDisplay();
 
         assertTrue("The displayLetter list does not egale to 12", displayLetters.size() == 12);
+        assertTrue("displayLetter does not a instance of ArrayList<Character>", displayLetters instanceof List);
     }
 }

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Utils {
-    public final static String url = System.getProperty("user.dir");
+    protected Utils() {}
+
+    public static final String url = System.getProperty("user.dir");
 
     /* This method avoids duplicating the database opening code for subclasses
      *
@@ -20,8 +22,7 @@ public class Utils {
             String content = FileUtils.readFileToString(file, "utf-8");
 
             return new JSONObject(content);
-        }
-        catch (Exception e) { System.out.print(e); }
+        } catch (Exception e) { System.out.print(e); }
 
         return new JSONObject();
     }
@@ -32,7 +33,7 @@ public class Utils {
      * @param  difficulty  the game's difficulty
      * @return boolean     true: if the player can use; false: if the user can not use
      */
-    public static boolean CheckCoins (Player player, Difficulty difficulty) {
+    public static boolean CheckCoins(Player player, Difficulty difficulty) {
         int playerCoins = player.GetCoins();
         int levelCoin = difficulty.GetLevelCoin();
 

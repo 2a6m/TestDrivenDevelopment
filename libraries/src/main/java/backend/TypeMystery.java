@@ -37,7 +37,7 @@ public abstract class TypeMystery {
         }
 
         //build response with a random letters and word's letter
-        for (int i=0; i<12-word.length(); i+=1) {
+        for (int i = 0; i < 12 - word.length(); i += 1) {
             int randLetter = random.nextInt(alphabet.size());
             response.add(alphabet.get(randLetter));
         }
