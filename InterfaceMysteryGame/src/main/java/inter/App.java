@@ -22,21 +22,21 @@ public class App {
                 switch (difficulty.getSelectedItem().toString()) {
                     case "Facile":
                         difficultyObject = new Difficulty("easy");
-                        frame.setContentPane(new GameChoice(frame, difficultyObject).getGameChoice());
+                        frame.setContentPane(new GameChoice(frame, difficultyObject).GetGameChoice());
                         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         frame.pack();
                         frame.setVisible(true);
                         break;
                     case "Moyen":
                         difficultyObject = new Difficulty("intermediate");
-                        frame.setContentPane(new GameChoice(frame, difficultyObject).getGameChoice());
+                        frame.setContentPane(new GameChoice(frame, difficultyObject).GetGameChoice());
                         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         frame.pack();
                         frame.setVisible(true);
                         break;
                     case "Difficile":
                         difficultyObject = new Difficulty("advanced");
-                        frame.setContentPane(new GameChoice(frame, difficultyObject).getGameChoice());
+                        frame.setContentPane(new GameChoice(frame, difficultyObject).GetGameChoice());
                         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         frame.pack();
                         frame.setVisible(true);
