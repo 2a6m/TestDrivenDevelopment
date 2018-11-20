@@ -5,7 +5,7 @@ public class Player {
     private String pseudo;
     private int coins;
 
-    public Player(String pseudo){
+    public Player(String pseudo) {
         this.pseudo = pseudo;
     }
 
