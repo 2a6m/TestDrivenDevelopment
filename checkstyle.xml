@@ -121,7 +121,7 @@
         <!-- Checks for imports                              -->
         <!-- See http://checkstyle.sf.net/config_import.html -->
         <module name="AvoidStarImport">
-            <property name="excludes" value="java.util, javafx.util, backend"/>
+            <property name="excludes" value="java.util, javafx.util, backend, javax.swing"/>
         </module>
         <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
         <module name="RedundantImport"/>
