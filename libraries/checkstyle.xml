@@ -86,7 +86,7 @@
         <!-- <module name="LocalFinalVariableName"/> -->
         <module name="LocalVariableName"/>
         <module name="MemberName"/>
-        <module name="MethodName"/>
+        <!--<module name="MethodName"/> -->
         <module name="PackageName"/>
         <module name="ParameterName"/>
         <module name="StaticVariableName"/>
@@ -190,7 +190,7 @@
         <module name="TodoComment"/>
         <module name="UpperEll"/>
 
-        <module name="MethodNameCheck">
+        <module name="MethodName">
             <!-- Validates identifiers for method names. -->
             <metadata name="altname" value="MethodName" />
             <property name="format" value="^[A-Z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*$" />

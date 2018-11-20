@@ -30,15 +30,15 @@ public class Game {
 
     public void SetLetterDisplay(ArrayList<Character> letterDisplay) { this.letterDisplay = letterDisplay; }
 
-    public ArrayList<Character> GetLetterDisplay(){ return this.letterDisplay; }
+    public ArrayList<Character> GetLetterDisplay() { return this.letterDisplay; }
 
-    public void SetTypeMystery(TypeMystery typeMystery){ this.typeMystery = typeMystery; }
+    public void SetTypeMystery(TypeMystery typeMystery) { this.typeMystery = typeMystery; }
 
-    public void SetDifficulty(Difficulty difficulty){ this.difficulty = difficulty; }
+    public void SetDifficulty(Difficulty difficulty) { this.difficulty = difficulty; }
 
     public Difficulty GetDifficulty() { return this.difficulty; }
 
-    public void SetMystery(Pair<String, List<String>> mystery){ this.mystery = mystery; }
+    public void SetMystery(Pair<String, List<String>> mystery) { this.mystery = mystery; }
 
     public Pair<String, List<String>> GetMystery() { return mystery; }
 
@@ -52,10 +52,10 @@ public class Game {
      * @param  password the password of the player
      * @return void
      */
-    public void Login(String pseudo, String password){
+    public void Login(String pseudo, String password) {
         JSONObject playerData = CheckLogin(pseudo,password);
 
-        if(playerData.length() != 0) {
+        if (playerData.length() != 0) {
             Player player = new Player(pseudo);
             this.player = player;
 
@@ -69,8 +69,7 @@ public class Game {
                 System.out.print("Connection échouée");
 
             }
-        }
-        else {
+        } else {
             System.out.print("Connection échouée");
         }
     }
@@ -86,15 +85,14 @@ public class Game {
         JSONObject objectNull = new JSONObject();
 
         try {
-            JSONObject db = Utils.ReadDatabase(Utils.url+"/../libraries/src/main/resources/playerDatabase.json");
+            JSONObject db = Utils.ReadDatabase(Utils.url + "/../libraries/src/main/resources/playerDatabase.json");
 
             JSONObject playerData = db.getJSONObject(pseudo);
             String pass = (String) playerData.get("password");
 
-            if(pass.equals(password)) {
+            if (pass.equals(password)) {
                 return playerData;
-            }
-            else {
+            } else {
                 return objectNull;           //invalid password
             }
 
@@ -111,11 +109,11 @@ public class Game {
      */
     public void Save() {
         try {
-            JSONObject db = Utils.ReadDatabase(Utils.url+"/../libraries/src/main/resources/playerDatabase.json");
+            JSONObject db = Utils.ReadDatabase(Utils.url + "/../libraries/src/main/resources/playerDatabase.json");
             JSONObject playerData = db.getJSONObject(player.GetPseudo());
             playerData.put("coins",player.GetCoins());
 
-            try (FileWriter files = new FileWriter(Utils.url+"/../libraries/src/main/resources/playerDatabase.json"))
+            try (FileWriter files = new FileWriter(Utils.url + "/../libraries/src/main/resources/playerDatabase.json"))
             {
                 files.write(db.toString());
                 System.out.println("\nSuccessfully updated json object to file !");
