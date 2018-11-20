@@ -22,5 +22,15 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.ecam.libraries</groupId>
+            <artifactId>libraries</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../libraries/backend.jar</systemPath>
+        </dependency>
+    </dependencies>
+
     
 </project>

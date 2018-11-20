@@ -1,8 +1,5 @@
 package inter;
 
-import java.awt.event.InputMethodEvent;
-import java.awt.event.InputMethodListener;
-import java.util.*;
 import java.util.function.Consumer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -203,9 +200,10 @@ public class Riddle {
         disableButtons.forEach(new Consumer<JButton>() {
             @Override
             public void accept(JButton jButton) {
-                if (!jButton.equals(" "))
-                    jButton.setEnabled(true) ;
+                if (!jButton.equals(" ")) {
+                    jButton.setEnabled(true);
                     disableButtons = new ArrayList<JButton>();
+                }
             }
         });
     }
@@ -214,7 +212,7 @@ public class Riddle {
         listButtons.forEach(new Consumer<JButton>() {
             @Override
             public void accept(JButton jButton) {
-                jButton.setEnabled(true) ;
+                jButton.setEnabled(true);
                 listSpace = new ArrayList<JButton>();
             }
         });
@@ -224,7 +222,7 @@ public class Riddle {
         bonusUsed.forEach(new Consumer<JButton>() {
             @Override
             public void accept(JButton jButton) {
-                jButton.setEnabled(true) ;
+                jButton.setEnabled(true);
                 bonusUsed = new ArrayList<JButton>();
             }
         });
@@ -291,8 +289,7 @@ public class Riddle {
         if (player==null){
             removeBonus.setEnabled(false);
             disableButtons.add(removeBonus);
-        }
-        else {
+        } else {
           coins.setText(String.valueOf(player.GetCoins()) + " pièces");
         }
 
