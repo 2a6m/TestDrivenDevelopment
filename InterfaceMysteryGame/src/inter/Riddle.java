@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import backend.*;
 
 
-public class riddle {
+public class Riddle {
     private JPanel riddle;
     private JLabel enigma;
     private JLabel wordBox;
@@ -31,7 +31,9 @@ public class riddle {
     private JButton removeBonus;
     private JButton displayBonus;
     private JButton skipBonus;
-    private JLabel espace;
+    private JLabel lettersNumber;
+    private JLabel coins;
+    private JLabel space;
     private JFrame frame;
     private Difficulty difficulty;
     private TypeMystery typeMystery;
@@ -41,10 +43,12 @@ public class riddle {
     private String password;
     private ArrayList<JButton> disableButtons = new ArrayList<JButton>();
     private ArrayList<JButton> bonusUsed = new ArrayList<JButton>();
-    private ArrayList<JButton> ListButtons = new ArrayList<JButton>();
+    private ArrayList<JButton> listButtons = new ArrayList<JButton>();
+    private ArrayList<JButton> listSpace = new ArrayList<JButton>();
     private Game game;
+    private Player player;
 
-    public void setLetters(ArrayList<Character> letters) {
+    public void SetLetters(ArrayList<Character> letters) {
         letter1.setText(Character.toString(letters.get(0)));
         letter2.setText(Character.toString(letters.get(1)));
         letter3.setText(Character.toString(letters.get(2)));
@@ -57,21 +61,23 @@ public class riddle {
         letter10.setText(Character.toString(letters.get(9)));
         letter11.setText(Character.toString(letters.get(10)));
         letter12.setText(Character.toString(letters.get(11)));
-        ListButtons.add(letter1);
-        ListButtons.add(letter2);
-        ListButtons.add(letter3);
-        ListButtons.add(letter4);
-        ListButtons.add(letter5);
-        ListButtons.add(letter6);
-        ListButtons.add(letter7);
-        ListButtons.add(letter8);
-        ListButtons.add(letter9);
-        ListButtons.add(letter10);
-        ListButtons.add(letter11);
-        ListButtons.add(letter12);
+        listButtons.add(letter1);
+        listButtons.add(letter2);
+        listButtons.add(letter3);
+        listButtons.add(letter4);
+        listButtons.add(letter5);
+        listButtons.add(letter6);
+        listButtons.add(letter7);
+        listButtons.add(letter8);
+        listButtons.add(letter9);
+        listButtons.add(letter10);
+        listButtons.add(letter11);
+        listButtons.add(letter12);
+        RemoveSpace();
+
     }
 
-    public riddle(JFrame frame, Difficulty difficulty, TypeMystery typeMystery, String user, String password) {
+    public Riddle(JFrame frame, Difficulty difficulty, TypeMystery typeMystery, String user, String password) {
 
         this.frame = frame;
         this.difficulty = difficulty;
@@ -82,151 +88,139 @@ public class riddle {
         letter1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter1);
-                check();
+                UpdateWordBox(letter1);
+                Check();
             }
         });
         letter2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter2);
-                check();
+                UpdateWordBox(letter2);
+                Check();
             }
         });
         letter3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter3);
-                check();
+                UpdateWordBox(letter3);
+                Check();
             }
         });
         letter4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter4);
-                check();
+                UpdateWordBox(letter4);
+                Check();
             }
         });
         letter5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter5);
-                check();
+                UpdateWordBox(letter5);
+                Check();
             }
         });
         letter6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter6);
-                check();
+                UpdateWordBox(letter6);
+                Check();
             }
         });
         letter7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter7);
-                check();
+                UpdateWordBox(letter7);
+                Check();
             }
         });
         letter8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter8);
-                check();
+                UpdateWordBox(letter8);
+                Check();
             }
         });
         letter9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter9);
-                check();
+                UpdateWordBox(letter9);
+                Check();
             }
         });
         letter10.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter10);
-                check();
+                UpdateWordBox(letter10);
+                Check();
             }
         });
         letter11.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter11);
-                check();
+                UpdateWordBox(letter11);
+                Check();
             }
         });
         letter12.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateWordBox(letter12);
-                check();
+                UpdateWordBox(letter12);
+                Check();
             }
         });
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (displayBonus.isEnabled()) {
-                    if (removeBonus.isEnabled()){reset();}
-                    else {
-                        reset();
-                        removeMethod();
-                    }
-                }
-                else {
-
-                    if(removeBonus.isEnabled()){reset();}
-                    else {
-                        reset();
-                        removeMethod();
-                    }
-                    wordBox.setText(response.substring(0,1));
-                    removeFirstLetter();
-                }
+                Reset();
             }
         });
         removeBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!displayBonus.isEnabled()) {wordBox.setText(response.substring(0,1));}
-                removeMethod();
+                game.GetBonusList().get(0).ApplyBonus(game);
+                SetLetters(game.GetLetterDisplay());
+                coins.setText(String.valueOf(player.GetCoins()) + " pièces");
                 removeBonus.setEnabled(false);
                 bonusUsed.add(removeBonus);
             }
         });
-
         displayBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                removeFirstLetter();
-                wordBox.setText(response.substring(0,1));
-                displayBonus.setEnabled(false);
-                bonusUsed.add(displayBonus);
             }
         });
         skipBonus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reset();
-                resetBonus();
-                Next();
             }
         });
     }
 
-    public void reset() {
+    public void Reset() {
         wordBox.setText("");
 
         disableButtons.forEach(new Consumer<JButton>() {
             @Override
             public void accept(JButton jButton) {
-                jButton.setEnabled(true) ;
-                disableButtons = new ArrayList<JButton>();
+                if (!jButton.equals(" "))
+                    jButton.setEnabled(true) ;
+                    disableButtons = new ArrayList<JButton>();
             }
         });
     }
 
-    public void resetBonus() {
+    public void ResetSpace() {
+        listButtons.forEach(new Consumer<JButton>() {
+            @Override
+            public void accept(JButton jButton) {
+                jButton.setEnabled(true) ;
+                listSpace = new ArrayList<JButton>();
+            }
+        });
+    }
+
+    public void ResetBonus() {
         bonusUsed.forEach(new Consumer<JButton>() {
             @Override
             public void accept(JButton jButton) {
@@ -236,19 +230,31 @@ public class riddle {
         });
     }
 
-    public void check() {
+    public void RemoveSpace() {
+        for (JButton button : listButtons) {
+            if (button.getText().equals(" ")){
+                button.setEnabled(false);
+                listSpace.add(button);
+            }
+
+        }
+    }
+
+    public void Check() {
         String word = wordBox.getText();
         if (response.length() == wordBox.getText().length()) {
             boolean bool = response.contentEquals(word);
             if (bool) {
-                reset();
-                resetBonus();
+                Reset();
+                ResetSpace();
+                ResetBonus();
+                if (player!=null){difficulty.AddCoins(game.GetPlayer());}
                 Next();
             }
         }
     }
 
-    public void updateWordBox(JButton button) {
+    public void UpdateWordBox(JButton button) {
         word = wordBox.getText();
         word = word + button.getText();
         wordBox.setText(word);
@@ -256,27 +262,8 @@ public class riddle {
         disableButtons.add(button);
     }
 
-    public void removeMethod(){
-        for (JButton button : ListButtons) {
-            if(response.indexOf(button.getText().charAt(0))== -1){
-                button.setEnabled(false);
-                disableButtons.add(button);
-            }
-            
-        }
-    }
-    public void removeFirstLetter(){
-        for (JButton button : ListButtons) {
-            if (button.getText().contentEquals(response.substring(0,1))) {
-                button.setEnabled(false);
-                disableButtons.add(button);
-                break;
-            }
-        }
 
-    }
-
-    public void initialize() {
+    public void Initialize() {
         this.game = new Game(difficulty, typeMystery);
         game.SetTypeMystery(typeMystery);
         if (this.user != "") {
@@ -291,16 +278,23 @@ public class riddle {
 
         enigma.setText(game.GetMystery().getValue().get(0));
         this.response = game.GetMystery().getKey();
+        lettersNumber.setText(String.valueOf(response.length()) + " lettres");
 
         ArrayList<Character> displayLetters = game.GetLetterDisplay();
-
-        //game.GetBonusList().get(0).ApplyBonus(game);
 
         frame.setContentPane(riddle);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        setLetters(displayLetters);
-    }
+        SetLetters(displayLetters);
+        player = game.GetPlayer();
+        if (player==null){
+            removeBonus.setEnabled(false);
+            disableButtons.add(removeBonus);
+        }
+        else {
+          coins.setText(String.valueOf(player.GetCoins()) + " pièces");
+        }
 
+    }
 }

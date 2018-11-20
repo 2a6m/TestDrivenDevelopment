@@ -10,27 +10,27 @@ public class Login {
     private JPanel loginPanel;
     private JTextField username;
     private JPasswordField password;
-    private JButton Login;
+    private JButton login;
     private JButton notLogin;
 
     public Login(JFrame frame, Difficulty difficulty,TypeMystery typeMystery) {
 
-        Login.addActionListener(new ActionListener() {
+        login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 char[] pswdArray = password.getPassword();
                 String str = "";
                 for(char c : pswdArray) str+=String.valueOf(c);
-                new riddle(frame, difficulty, typeMystery, username.getText(), str).initialize();
+                new Riddle(frame, difficulty, typeMystery, username.getText(), str).Initialize();
             }
         });
         notLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new riddle(frame, difficulty, typeMystery, "", "").initialize();
+                new Riddle(frame, difficulty, typeMystery, "", "").Initialize();
             }
         });
     }
-    public JPanel getLogin() { return loginPanel; }
+    public JPanel GetLogin() { return loginPanel; }
 
 }
