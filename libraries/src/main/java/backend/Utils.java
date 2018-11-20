@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Utils {
+    protected Utils() {}
+
     public static final String url = System.getProperty("user.dir");
 
     /* This method avoids duplicating the database opening code for subclasses
