@@ -248,7 +248,7 @@ public class Riddle {
                 Reset();
                 ResetSpace();
                 ResetBonus();
-                difficulty.AddCoins(game.GetPlayer());
+                if (player!=null){difficulty.AddCoins(game.GetPlayer());}
                 Next();
             }
         }
@@ -297,5 +297,4 @@ public class Riddle {
         }
 
     }
-
 }
