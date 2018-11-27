@@ -5,21 +5,24 @@ import javafx.util.*;
 
 public abstract class TypeMystery {
 
-    /* Set the necessary information to launch a game tour
+    /**
+     * Set the necessary information to launch a game tour
      *
      * @param  game  represents information related to the game
      * @return void
      */
     public abstract void NextMystery(Game game);
 
-    /* Chooses a mystery at random depending on the difficulty and mode of play
+    /**
+     * Chooses a mystery at random depending on the difficulty and mode of play
      *
      * @param  difficulty  easy, intermediate, advanced
      * @return             key: the word to find; value: a clue list to find the word
      */
     public abstract Pair<String, List<String>> ChoiceMystery(String difficulty);
 
-    /* For players to find the mystery word, it is necessary to mix the letters of the word with mixed letters of the alphabet
+    /**
+     * For players to find the mystery word, it is necessary to mix the letters of the word with mixed letters of the alphabet
      *
      * @param  word  the word to be mixed with random letters
      * @return       a ArrayList which contain the word's characters and a random alphabet's letters
