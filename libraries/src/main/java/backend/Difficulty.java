@@ -18,15 +18,28 @@ public class Difficulty {
         this.levelCoin = coinConfiguration.get(name);
     }
 
+    /* Gives the name of the difficulty
+     *
+     * @return the name of the difficulty
+     */
     public String GetName() {
         return this.name;
     }
 
+    /* Gives coins corresponding to the difficulty chosen that can be added or removed from the player
+     *
+     * @return void
+     */
     public int GetLevelCoin() { return this.levelCoin; }
 
+    /* Changes the name of the difficulty
+     *
+     * @param  name      the new name of the difficulty
+     * @return void
+     */
     public void SetName(String name) { this.name = name; }
 
-    /* Remove coins of a player
+    /* Removes coins of a player
      *
      * @param  player   the player who spent his coins
      * @return void
@@ -38,7 +51,7 @@ public class Difficulty {
 
     }
 
-    /* Add coins of a player
+    /* Adds coins of a player
      *
      * @param  player   the player who won his coins
      * @return void
