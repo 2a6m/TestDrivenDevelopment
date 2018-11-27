@@ -11,7 +11,8 @@ public class Utils {
 
     public static final String url = System.getProperty("user.dir");
 
-    /* This method avoids duplicating the database opening code for subclasses
+    /**
+     * This method avoids duplicating the database opening code for subclasses
      *
      * @param  path  the path to the database
      * @return       a JSONObject representing the database
@@ -27,7 +28,8 @@ public class Utils {
         return new JSONObject();
     }
 
-    /* Check if the player ase enough coins for using bonus
+    /**
+     * Check if the player ase enough coins for using bonus
      *
      * @param  player      the game's player
      * @param  difficulty  the game's difficulty
@@ -40,7 +42,8 @@ public class Utils {
         return playerCoins > levelCoin;
     }
 
-    /* Mix an array (Fisher-Yates algorithm)
+    /**
+     * Mix an array (Fisher-Yates algorithm)
      *
      * @param  array                the initial array of char
      * @return ArrayList<Character> the array mixed
